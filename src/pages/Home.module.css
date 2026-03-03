@@ -76,3 +76,27 @@
   font-size: 0.9rem;
   color: var(--text-muted);
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .quickActions {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .cardIcon {
+    font-size: 1.6rem;
+  }
+}

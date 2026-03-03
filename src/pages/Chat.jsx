@@ -444,7 +444,8 @@ export default function Chat({ mode = 'dm' }) {
       )}
       <section className={styles.dialogPane}>
         <header className={styles.header}>
-          <div>
+          <Link to="/channels" className={styles.backBtn} aria-label="Назад до діалогів">←</Link>
+          <div className={styles.headerTitleWrap}>
             <h1>
               {title}
               {isOfficial && <span className={styles.officialBadge} title="Офіційне ластівка-джерело"> ✓</span>}

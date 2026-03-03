@@ -107,3 +107,33 @@
   font-size: 0.9rem;
   color: var(--accent);
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .header h1 {
+    font-size: 1.25rem;
+  }
+
+  .newDm {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .newDm input,
+  .newDm button {
+    min-height: 44px;
+  }
+
+  .contactCard {
+    padding: 14px 16px;
+    min-height: 56px;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+  }
+}

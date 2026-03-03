@@ -101,3 +101,26 @@
   font-weight: 600;
   color: #6ab2f2;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .header h1 {
+    font-size: 1.3rem;
+  }
+
+  .form input,
+  .submit {
+    min-height: 48px;
+  }
+
+  .submit {
+    margin-top: 4px;
+  }
+}

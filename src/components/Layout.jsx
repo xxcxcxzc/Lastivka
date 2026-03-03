@@ -12,6 +12,11 @@ export default function Layout() {
   const location = useLocation()
   const navigate = useNavigate()
   const [contextMenu, setContextMenu] = useState(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [location.pathname])
 
   const isAdmin = user?.lastivkaId?.toLowerCase() === ADMIN_LASTIVKA_ID
 
@@ -117,8 +122,14 @@ export default function Layout() {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+      <header className={styles.mobileHeader} aria-label="Меню">
+        <button type="button" className={styles.menuBtn} onClick={() => setSidebarOpen(true)} aria-label="Відкрити меню">☰</button>
+        <span className={styles.mobileHeaderTitle}>Ластівка</span>
+      </header>
+      <div className={styles.sidebarBackdrop} onClick={() => setSidebarOpen(false)} aria-hidden="true" />
       <aside className={styles.sidebar}>
+        <button type="button" className={styles.sidebarClose} onClick={() => setSidebarOpen(false)} aria-label="Закрити меню">✕</button>
         <div className={styles.logo}>
           <img src="/logo/LastiVka.svg" alt="Ластівка" className={styles.logoImage} />
           <span>Ластівка</span>

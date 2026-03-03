@@ -249,3 +249,158 @@
   flex-direction: column;
   background: var(--tg-bg);
 }
+
+/* ----- Mobile: drawer sidebar + top bar ----- */
+.mobileHeader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  padding: 0 12px 0 8px;
+  padding-top: env(safe-area-inset-top, 0);
+  align-items: center;
+  gap: 12px;
+  background: var(--tg-panel);
+  border-bottom: 1px solid var(--tg-border);
+  z-index: 90;
+}
+
+.menuBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: var(--tg-text);
+  flex-shrink: 0;
+}
+
+.menuBtn:hover {
+  background: var(--tg-panel-hover);
+}
+
+.mobileHeaderTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--tg-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebarBackdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 98;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.sidebarClose {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--tg-text-secondary);
+}
+
+.sidebarClose:hover {
+  background: var(--tg-panel-hover);
+  color: var(--tg-text);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Планшети та телефони: сайдбар у вигляді шторки, контент на всю ширину */
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .mobileHeader {
+    display: flex;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 0;
+    padding-top: 52px;
+    padding-top: calc(52px + env(safe-area-inset-top, 0));
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(100vw, 300px);
+    min-width: 0;
+    max-width: 85vw;
+    z-index: 99;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-out;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .sidebarOpen .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebarBackdrop {
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .sidebarOpen .sidebarBackdrop {
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
+  }
+
+  .sidebarClose {
+    display: flex;
+  }
+
+  .logo {
+    padding-right: 48px;
+  }
+
+  .logo span {
+    font-size: 1rem;
+  }
+
+  .dialogAvatar,
+  .dialogAvatarImg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .userBlock {
+    padding: 10px 12px;
+  }
+
+  .userAvatar {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+
+  .userActions {
+    flex-wrap: wrap;
+  }
+}

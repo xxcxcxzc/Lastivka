@@ -114,3 +114,20 @@
   text-align: center;
   padding: 40px;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .item {
+    padding: 14px 16px;
+    min-height: 56px;
+  }
+
+  .avatar,
+  .avatarImg {
+    width: 44px;
+    height: 44px;
+  }
+}

@@ -148,3 +148,26 @@
   margin-top: 8px;
   margin-bottom: 10px;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .card h1 {
+    font-size: 1.1rem;
+  }
+
+  .form input,
+  .form textarea,
+  .form select,
+  .cancel,
+  .submit {
+    min-height: 44px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+}

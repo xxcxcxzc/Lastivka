@@ -116,3 +116,23 @@
   padding: 16px;
   font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .select,
+  .btn,
+  .btnRevoke {
+    min-height: 44px;
+  }
+
+  .listItem {
+    padding: 12px 14px;
+  }
+}
