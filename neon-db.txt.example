@@ -1,0 +1,7 @@
+# 1. Copy this file and rename to: neon-db.txt
+# 2. Paste your Neon connection string on the next line (from neon.tech -> Connect -> Copy)
+# 3. Save. Put neon-db.txt on BOTH PCs in the Swallow folder.
+# 4. Run run-Lastivka.ps1 - both PCs will use the same database.
+
+postgresql://neondb_owner:PASSWORD@ep-xxx-pooler.aws.neon.tech/neondb?sslmode=require
+

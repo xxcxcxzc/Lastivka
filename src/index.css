@@ -1,0 +1,109 @@
+/* Ластівка — Telegram-style, сучасний, серйозний дизайн */
+:root {
+  --tg-bg: #0e1621;
+  --tg-panel: #17212b;
+  --tg-panel-hover: #242f3d;
+  --tg-accent: #2b5278;
+  --tg-accent-hover: #3d6d99;
+  --tg-text: #ffffff;
+  --tg-text-secondary: #8b98a5;
+  --tg-border: #242f3d;
+  --tg-green: #4caf50;
+  --tg-red: #e53935;
+  --tg-radius: 8px;
+  --tg-radius-sm: 6px;
+  /* Aliases for compatibility */
+  --bg-main: var(--tg-bg);
+  --bg-panel: var(--tg-panel);
+  --bg-hover: var(--tg-panel-hover);
+  --accent: #6ab2f2;
+  --accent-light: #8bc4f5;
+  --accent-dark: var(--tg-accent);
+  --text: var(--tg-text);
+  --text-muted: var(--tg-text-secondary);
+  --border: var(--tg-border);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --success: var(--tg-green);
+  --danger: var(--tg-red);
+  --radius: var(--tg-radius);
+  --radius-sm: var(--tg-radius-sm);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  min-height: 100vh;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: #6ab2f2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tg-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tg-text-secondary);
+}
+
+/* Toast notifications - left corner */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.toast-container > * {
+  pointer-events: auto;
+}
+
+/* Плавні переходи по всьому додатку */
+button, a, input, select, textarea, [class*="modal"], [class*="Backdrop"], [class*="Card"] {
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+

@@ -1,0 +1,58 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  animation: alertFadeIn 0.25s ease-out;
+}
+
+.card {
+  animation: alertSlideUp 0.3s ease-out;
+  width: min(92vw, 360px);
+  background: var(--tg-panel);
+  border: 1px solid var(--tg-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.message {
+  color: var(--tg-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.okBtn {
+  padding: 10px 24px;
+  border-radius: var(--tg-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--tg-accent);
+  color: #fff;
+  transition: background 0.2s ease-out;
+}
+
+.okBtn:hover {
+  background: var(--tg-accent-hover);
+}
+
+@keyframes alertFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes alertSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,154 @@
+.page {
+  padding: 32px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  color: var(--accent-dark);
+}
+
+.createBtn {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: white !important;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.createBtn:hover {
+  opacity: 0.95;
+  text-decoration: none;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 24px;
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  border: 1px dashed var(--border);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.empty p {
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.emptyLink {
+  font-weight: 600;
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 8px;
+}
+
+.channelCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.channelMain {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.2s;
+  flex: 1;
+}
+
+.channelMain:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.channelIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.channelInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.channelInfo strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.channelInfo span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.channelActions {
+  display: flex;
+  gap: 8px;
+}
+
+.actionBtn {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.actionBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  text-decoration: none;
+}

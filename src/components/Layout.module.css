@@ -1,0 +1,251 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: var(--tg-panel);
+  border-right: 1px solid var(--tg-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.logo {
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--tg-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.logoImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.searchTopBtn,
+.createTopBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--tg-text-secondary);
+  font-size: 1rem;
+}
+
+.searchTopBtn {
+  margin-left: auto;
+}
+
+.searchTopBtn:hover,
+.createTopBtn:hover {
+  background: var(--tg-panel-hover);
+  color: var(--tg-text);
+  text-decoration: none;
+}
+
+.dialogList {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dialogListEmpty {
+  overflow: hidden;
+}
+
+.empty {
+  margin: auto;
+  color: var(--tg-text-secondary);
+  font-size: 0.9rem;
+  padding: 20px;
+}
+
+.dialogItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--tg-radius);
+  text-decoration: none;
+  color: var(--tg-text);
+  transition: background 0.2s ease-out;
+}
+
+.dialogItem:hover {
+  background: var(--tg-panel-hover);
+  text-decoration: none;
+}
+
+.dialogItemActive {
+  background: var(--tg-accent);
+}
+
+.dialogItemActive:hover {
+  background: var(--tg-accent-hover);
+}
+
+.dialogAvatar,
+.dialogAvatarImg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dialogAvatar {
+  background: var(--tg-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dialogAvatarImg {
+  object-fit: cover;
+}
+
+.dialogMeta {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dialogSub {
+  font-size: 0.82rem;
+  color: var(--tg-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dialogUnread {
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #e53935;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.officialBadge {
+  color: #4fc3f7;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.mutedIcon {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.dialogMuted .dialogUnread {
+  display: none;
+}
+
+.adminItem {
+  border-left: 3px solid var(--tg-accent);
+}
+
+.userBlock {
+  padding: 12px 16px;
+  border-top: 1px solid var(--tg-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--tg-bg);
+}
+
+.userAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--tg-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.userInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.userName {
+  display: block;
+  font-weight: 600;
+  color: var(--tg-text);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userId {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--tg-text-secondary);
+}
+
+.userActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.settingsBtn,
+.logoutBtn {
+  font-size: 0.8rem;
+  color: var(--tg-text-secondary);
+}
+
+.settingsBtn:hover,
+.logoutBtn:hover {
+  color: #6ab2f2;
+  text-decoration: underline;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--tg-bg);
+}

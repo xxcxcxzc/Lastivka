@@ -1,0 +1,118 @@
+.page {
+  padding: 24px;
+  max-width: 480px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--tg-text);
+  margin-bottom: 4px;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: var(--tg-text-secondary);
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--tg-text-secondary);
+  margin-bottom: 10px;
+}
+
+.select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--tg-border);
+  border-radius: var(--tg-radius-sm);
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--tg-accent);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn,
+.btnRevoke {
+  padding: 10px 20px;
+  border-radius: var(--tg-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.btn {
+  background: var(--tg-accent);
+  color: #fff;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--tg-accent-hover);
+}
+
+.btnRevoke {
+  background: var(--tg-panel-hover);
+  color: var(--tg-text);
+}
+
+.btnRevoke:hover:not(:disabled) {
+  background: var(--tg-border);
+}
+
+.btn:disabled,
+.btnRevoke:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  color: var(--tg-red);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--tg-panel);
+  border-radius: var(--tg-radius-sm);
+  margin-bottom: 6px;
+  color: var(--tg-text);
+  font-size: 0.95rem;
+}
+
+.officialBadge {
+  color: #4fc3f7;
+  font-weight: 600;
+}
+
+.empty {
+  color: var(--tg-text-secondary);
+  padding: 16px;
+  font-size: 0.9rem;
+}
