@@ -126,6 +126,17 @@ export const search = {
   run: (q, filter = 'all') => request(`/search?q=${encodeURIComponent(q)}&filter=${encodeURIComponent(filter)}`),
 }
 
+export const feed = {
+  popular: () => request('/feed/popular').then((r) => r.posts || []),
+  byKeywords: (keywordsStr) =>
+    request(`/feed/keywords?keywords=${encodeURIComponent(keywordsStr || '')}`).then((r) => r.messages || []),
+}
+
+export const messageViews = {
+  record: (id) => request(`/messages/${id}/view`, { method: 'POST' }),
+  recordBatch: (messageIds) => request('/messages/views', { method: 'POST', body: JSON.stringify({ messageIds }) }),
+}
+
 export const admin = {
   setChannelOfficial: (channelId, official) =>
     request(`/admin/channels/${channelId}/official`, { method: 'PATCH', body: JSON.stringify({ official }) }),

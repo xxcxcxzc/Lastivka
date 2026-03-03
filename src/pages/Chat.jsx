@@ -120,6 +120,9 @@ export default function Chat({ mode = 'dm' }) {
       .then((list) => {
         if (!cancelled) {
           setMessages(list || [])
+          if (isChannel && list?.length) {
+            api.messageViews.recordBatch(list.map((m) => m.id)).catch(() => {})
+          }
         }
       })
       .catch(() => {

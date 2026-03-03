@@ -76,7 +76,7 @@ export default function Layout() {
     const isPinned = pinned.includes(d.key)
     if (isPinned) {
       await updatePrefs({ pinned: pinned.filter((k) => k !== d.key) })
-    } else if (pinned.length < 4) {
+    } else if (pinned.length < 13) {
       await updatePrefs({ pinned: [d.key, ...pinned.filter((k) => k !== d.key)] })
     }
   }, [contextMenu, updatePrefs])

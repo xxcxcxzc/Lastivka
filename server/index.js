@@ -418,6 +418,7 @@ app.post('/api/channels/:id/messages', auth, (req, res) => {
     time: new Date().toISOString(),
     deletedFor: [],
     reactions: {},
+    viewCount: 0,
   }
   const messages = getMessages()
   messages.push(msg)
@@ -462,6 +463,7 @@ app.post('/api/channels/:id/discussion', auth, (req, res) => {
     time: new Date().toISOString(),
     deletedFor: [],
     reactions: {},
+    viewCount: 0,
   }
   const messages = getMessages()
   messages.push(msg)
@@ -895,7 +897,7 @@ app.patch('/api/user-prefs', auth, (req, res) => {
   if (!prefs[req.user.id]) prefs[req.user.id] = { pinned: [] }
   const up = prefs[req.user.id]
   if (Array.isArray(pinned)) {
-    up.pinned = pinned.slice(0, 4)
+    up.pinned = pinned.slice(0, 13)
   }
   if (typeof muted === 'object' && muted !== null) {
     up.muted = up.muted || {}
@@ -915,6 +917,76 @@ app.post('/api/dialogs/:key/read', auth, (req, res) => {
   state[req.user.id][req.params.key] = new Date().toISOString()
   saveReadState(state)
   res.json({ ok: true })
+})
+
+// Record view for message (for popularity)
+app.post('/api/messages/:id/view', auth, (req, res) => {
+  const { messages, index, message } = getMessageById(req.params.id)
+  if (!message) return res.status(404).json({ error: 'Повідомлення не знайдено' })
+  message.viewCount = (message.viewCount || 0) + 1
+  messages[index] = message
+  saveMessages(messages)
+  res.json({ ok: true, viewCount: message.viewCount })
+})
+
+app.post('/api/messages/views', auth, (req, res) => {
+  const ids = req.body?.messageIds
+  if (!Array.isArray(ids) || ids.length > 100) return res.status(400).json({ error: 'Потрібен масив messageIds (до 100)' })
+  const messages = getMessages()
+  ids.forEach((msgId) => {
+    const idx = messages.findIndex((m) => m.id === msgId)
+    if (idx >= 0) messages[idx].viewCount = (messages[idx].viewCount || 0) + 1
+  })
+  saveMessages(messages)
+  res.json({ ok: true })
+})
+
+// Feed: popular posts from channels user is in (by viewCount, day window 12:00–00:00 uses viewCount for now)
+app.get('/api/feed/popular', auth, (req, res) => {
+  const channels = getChannels()
+  const myChannelIds = new Set(channels.filter((c) => isChannelMember(c, req.user.id)).map((c) => c.id))
+  const messages = getMessages()
+  const posts = messages
+    .filter((m) => m.type === 'channel' && myChannelIds.has(m.channelId))
+    .filter((m) => !(m.deletedFor || []).includes(req.user.id))
+    .map((m) => ({ ...m, viewCount: m.viewCount || 0 }))
+    .sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0))
+    .slice(0, 80)
+  const channelMap = Object.fromEntries(channels.map((c) => [c.id, c]))
+  const withChannel = posts.map((m) => ({ ...m, channel: channelMap[m.channelId] || null }))
+  res.json({ posts: withChannel })
+})
+
+// Feed: all messages containing keywords (from public channels + user's channels + user's DMs)
+app.get('/api/feed/keywords', auth, (req, res) => {
+  const raw = (req.query.keywords || '').trim()
+  const keywords = raw ? raw.split(/[\s,]+/).map((s) => s.trim().toLowerCase()).filter(Boolean) : []
+  if (keywords.length === 0) return res.json({ messages: [] })
+  const channels = getChannels()
+  const messages = getMessages()
+  const userChannels = new Set(channels.filter((c) => isChannelMember(c, req.user.id)).map((c) => c.id))
+  const publicChannels = new Set(channels.filter((c) => c.visibility === 'public').map((c) => c.id))
+  const allowedChannelIds = new Set([...userChannels, ...publicChannels])
+  const dmKeys = new Set()
+  messages.filter((m) => m.type === 'dm').forEach((m) => {
+    if (m.dmKey && m.dmKey.includes(req.user.id)) dmKeys.add(m.dmKey)
+  })
+  const textMatch = (text) => text && keywords.some((kw) => String(text).toLowerCase().includes(kw))
+  const filtered = messages
+    .filter((m) => {
+      if (!textMatch(m.text)) return false
+      if ((m.deletedFor || []).includes(req.user.id)) return false
+      if (m.type === 'channel' || m.type === 'discussion') return allowedChannelIds.has(m.channelId)
+      if (m.type === 'dm') return dmKeys.has(m.dmKey)
+      return false
+    })
+    .map((m) => ({
+      ...m,
+      chatKey: m.type === 'channel' ? m.channelId : m.type === 'discussion' ? `discussion-${m.channelId}` : `dm-${m.dmKey}`,
+    }))
+    .sort((a, b) => new Date(b.time) - new Date(a.time))
+    .slice(0, 100)
+  res.json({ messages: filtered })
 })
 
 // Search
